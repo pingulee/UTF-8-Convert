@@ -14,7 +14,31 @@ int my_strlen(const char *str) {
     return length;
 }
 
+/*
+ * 두 문자열 비교하는 함수 (like strcmp)
+ * @param str1 1번째 문자열
+ * @param str2 2번째 문자열
+ * @return 두 문자열이 같으면 1, 다르면 0
+@param 
+*/
+int my_strcmp(const char *str1, const char *str2) {
+    int len1 = string_length(str1);
+    int len2 = string_length(str2);
+
+        if (len1 != len2) {
+        return 0;
+    }
+
+    for (int i = 0; i < len1; i++) {
+        if (str1[i] != str2[i]) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 int main() {
-    
+    my_strcmp;
     return 0;
 }
