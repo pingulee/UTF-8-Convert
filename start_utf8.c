@@ -1,10 +1,12 @@
 #include <stdio.h>
 
-int valid(const char* hex_code, int* byte_good) {
+int valid(const char* hex_code, int* byte_good, int* err_num) {
     unsigned int hex;
     int byte_check = 0;
+    int char_num = 0;
 
     *byte_good = 0;
+    *err_num = 0;
 
     while (*hex_code) {
         if (sscanf(hex_code, "%2x", &hex) != 1) break;
@@ -20,10 +22,12 @@ int valid(const char* hex_code, int* byte_good) {
             } else if ((hex & 0xF8) == 0xF0) { // 11110xxx = 4바이트
                 byte_check = 3;
             } else {
+                *err_num = char_num + 1;
                 return 0;
             }
         } else {
             if ((hex & 0xC0) != 0x80) {
+                *err_num = char_num + 1;
                 return 0;
             }
             byte_check--;
@@ -32,6 +36,10 @@ int valid(const char* hex_code, int* byte_good) {
         (*byte_good)++;
         while (*hex_code && *hex_code != ' ') hex_code++;
         if (*hex_code == ' ') hex_code++;
+        
+        if (byte_check == 0) {
+            char_num++;
+        }
     }
 
     return byte_check == 0;
@@ -42,8 +50,9 @@ void utf8_decode(const char* hex_code) {
     int char_count = 0;
     int byte_count = 0;
     int byte_good = 0;
+    int err_num = 0;
 
-    if (!valid(hex_code, &byte_good)) {
+    if (!valid(hex_code, &byte_good, &err_num)) {
         while (byte_good > 0 && *hex_code) {
             if (sscanf(hex_code, "%2x", &hex) != 1) break;
             printf("%c", hex);
@@ -58,7 +67,7 @@ void utf8_decode(const char* hex_code) {
 
             byte_good--;
         }
-        printf("\nerror!\n");
+        printf(" 오류! %d번째 문자\n", err_num);
         return;
     }
 
