@@ -84,7 +84,7 @@ int my_strcmp(const char *str1, const char *str2) {
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    char output[256];
+    char output[256] = {};
 
     scanf("%s", output);
     printf("%s\n", output);

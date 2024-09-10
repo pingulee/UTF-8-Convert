@@ -1,29 +1,27 @@
 {
     "version": "0.2.0",
     "configurations": [
-      {
-        "name": "C Debug",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/a.out",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}",
-        "environment": [],
-        "externalConsole": true,  // 외부 터미널에서 작업하려면 true로 설정
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": true
-          }
-        ],
-        "preLaunchTask": "build", // 빌드 작업을 자동으로 실행하려면 설정
-        "miDebuggerPath": "/usr/bin/gdb", // GDB의 경로
-        "internalConsoleOptions": "neverOpen",
-        "logging": { "trace": true, "traceResponse": true }
-      }
+        {
+            "name": "Debug C Program",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true, // 외부 터미널 사용
+            "preLaunchTask": "C/C++: gcc.exe 활성 파일 빌드", // 빌드 작업 이름
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "ignoreFailures": true,
+                    "text": "-enable-pretty-printing"
+                }
+            ],
+            "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe", // GDB 경로
+            "internalConsoleOptions": "neverOpen"
+        }
     ]
-  }
-  
+}

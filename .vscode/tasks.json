@@ -1,9 +1,10 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
             "label": "C/C++: gcc.exe 활성 파일 빌드",
-            "command": "C:\\MinGW\\bin\\gcc.exe",
+            "type": "shell",
+            "command": "C:\\msys64\\mingw64\\bin\\gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
@@ -23,6 +24,5 @@
             },
             "detail": "디버거에서 생성된 작업입니다."
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
