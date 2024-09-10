@@ -108,7 +108,7 @@ int main() {
         if (numBytes > 0) {
             print_utf8(utf8Bytes, numBytes);
         } else {
-            printf("잘못된 입력입니다.\n");
+            printf("잘못된 입력입니다. 다시 시도해 주세요.\n");
         }
     }
 
